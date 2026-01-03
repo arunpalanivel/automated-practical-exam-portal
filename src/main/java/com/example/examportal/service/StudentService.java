@@ -2,6 +2,7 @@ package com.example.examportal.service;
 
 import java.util.List;
 
+import com.example.examportal.exception.DuplicateRollNumberException;
 import org.springframework.stereotype.Service;
 
 import com.example.examportal.entity.Student;
@@ -16,6 +17,11 @@ public class StudentService {
     }
 
     public Student createStudent(String rollNumber, String name){
+
+        if(studentRepository.existsByRollNumber(rollNumber)){
+            throw new DuplicateRollNumberException(
+                    "Student with roll number " + rollNumber + " already exists");
+        }
         Student student = new Student(rollNumber, name);
         return studentRepository.save(student);
     }
