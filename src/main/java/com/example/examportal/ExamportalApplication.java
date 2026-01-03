@@ -1,7 +1,7 @@
 package com.example.examportal;
 
-import com.example.examportal.entity.Student;
-import com.example.examportal.repository.StudentRepository;
+
+import com.example.examportal.service.StudentService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -16,15 +16,19 @@ public class ExamportalApplication {
 	}
 
 	@Bean
-	CommandLineRunner run(StudentRepository studentRepository){
-		return args -> {
-			Student student1 = new Student("2022BTCY002","AJAY PALANIVEL");
-			studentRepository.save(student1);
+	CommandLineRunner run(StudentService studentService){
+		return  args ->{
+			studentService.createStudent("2022BTCY003","Ashwin");
+			studentService.createStudent("2022BTCY004","Ashwith");
 
-			System.out.println("Students in Database!");
-			studentRepository.findAll().forEach(s->System.out.println(s.getId() + " " + s.getRollnumber()
-			+ " " + s.getName()));
+			System.out.println("Students via service");
+
+			studentService.getAllStudents().forEach(student ->
+					System.out.println(student.getId() + " " + student.getRollnumber() + " " +
+							student.getName()));
+
 		};
 	}
-
 }
+
+
