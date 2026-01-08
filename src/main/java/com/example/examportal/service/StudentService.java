@@ -1,10 +1,13 @@
 package com.example.examportal.service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import com.example.examportal.exception.DuplicateRollNumberException;
 import org.springframework.stereotype.Service;
 
+import com.example.examportal.dto.StudentRequestDTO;
+import com.example.examportal.dto.StudentResponseDTO;
 import com.example.examportal.entity.Student;
 import com.example.examportal.repository.StudentRepository;
 
@@ -16,18 +19,27 @@ public class StudentService {
         this.studentRepository = studentRepository;
     }
 
-    public Student createStudent(String rollNumber, String name){
+    public StudentResponseDTO createStudent(StudentRequestDTO request){
 
-        if(studentRepository.existsByRollNumber(rollNumber)){
+        if(studentRepository.existsByRollNumber(request.getRollNumber())){
             throw new DuplicateRollNumberException(
-                    "Student with roll number " + rollNumber + " already exists");
+                    "Student with roll number " + request.getRollNumber() + " already exists");
         }
-        Student student = new Student(rollNumber, name);
-        return studentRepository.save(student);
+        Student student = new Student(request.getRollNumber(), request.getName());
+        Student savedStudent = studentRepository.save(student);
+        return new StudentResponseDTO(
+                savedStudent.getId(),
+                savedStudent.getRollnumber(),
+                savedStudent.getName()
+        );
     }
 
-    public List<Student> getAllStudents(){
-        return studentRepository.findAll();
+    public List<StudentResponseDTO> getAllStudents(){
+        return studentRepository.findAll().stream().map(student -> new StudentResponseDTO(
+                student.getId(),
+                student.getRollnumber(),
+                student.getName()
+        )).collect(Collectors.toList());
     }
 
 }

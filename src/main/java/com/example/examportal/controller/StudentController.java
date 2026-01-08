@@ -2,6 +2,7 @@ package com.example.examportal.controller;
 
 import java.util.List;
 
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -9,7 +10,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 
-
+import com.example.examportal.dto.StudentRequestDTO;
+import com.example.examportal.dto.StudentResponseDTO;
 import com.example.examportal.entity.Student;
 import com.example.examportal.service.StudentService;
 
@@ -24,16 +26,13 @@ public class StudentController {
     }
 
     @GetMapping
-    public List<Student> getAllStudents(){
+    public List<StudentResponseDTO> getAllStudents(){
         return studentService.getAllStudents();
     }
 
     @PostMapping
-    public Student createStudent(@RequestBody Student student){
-        return studentService.createStudent(
-                student.getRollnumber(),
-                student.getName()
-        );
+    public StudentResponseDTO createStudent(@Valid @RequestBody StudentRequestDTO request){
+        return studentService.createStudent(request);
     }
 
 }
