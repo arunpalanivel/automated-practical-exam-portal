@@ -7,6 +7,8 @@ import com.example.examportal.service.FacultyService;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/faculties")
 public class FacultyController {
@@ -20,6 +22,11 @@ public class FacultyController {
     @PostMapping
     public FacultyResponseDTO createFaculty(@Valid @RequestBody FacultyRequestDTO request){
         return facultyService.createFaculty(request);
+    }
+
+    @GetMapping
+    public List<FacultyResponseDTO> getAllStudents(){
+        return facultyService.getAllFaculties();
     }
 
 

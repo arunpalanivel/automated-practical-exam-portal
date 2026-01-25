@@ -33,6 +33,17 @@ public class GlobalExceptionHandler {
     }
 
 
+
+    @ExceptionHandler(DuplicateFacultyCodeException.class)
+    public ResponseEntity<Map<String, Object>> handleDuplicateFacultyCode(DuplicateFacultyCodeException ex){
+        Map<String, Object> errorResponse = new HashMap<>();
+        errorResponse.put("timestamp", LocalDateTime.now());
+        errorResponse.put("status", 400);
+        errorResponse.put("error", ex.getMessage());
+
+        return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
+    }
+
     @ExceptionHandler(DuplicateRollNumberException.class)
     public ResponseEntity<Map<String , Object>> handleDuplicateRollNumber(DuplicateRollNumberException ex){
         Map<String,Object> errorResponse = new HashMap<>();

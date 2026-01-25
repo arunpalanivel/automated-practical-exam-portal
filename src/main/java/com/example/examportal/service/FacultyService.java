@@ -5,8 +5,11 @@ import com.example.examportal.dto.FacultyRequestDTO;
 import com.example.examportal.dto.FacultyResponseDTO;
 import com.example.examportal.dto.StudentResponseDTO;
 import com.example.examportal.entity.Faculty;
+import com.example.examportal.exception.DuplicateFacultyCodeException;
 import com.example.examportal.repository.FacultyRepository;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class FacultyService {
@@ -20,7 +23,7 @@ public class FacultyService {
     public FacultyResponseDTO createFaculty(FacultyRequestDTO request) {
 
         if (facultyRepository.existsByFacultyCode(request.getFacultyCode())) {
-            throw new RuntimeException(
+            throw new DuplicateFacultyCodeException(
                     "Faculty with code " + request.getFacultyCode() + " already exists"
             );
         }
@@ -39,5 +42,15 @@ public class FacultyService {
                 savedFaculty.getName(),
                 savedFaculty.getEmail()
         );
+    }
+
+    public List<FacultyResponseDTO> getAllFaculties(){
+        return facultyRepository.findAll().stream().
+                map(faculty -> new FacultyResponseDTO(
+                        faculty.getId(),
+                        faculty.getFacultyCode(),
+                        faculty.getName(),
+                        faculty.getEmail()
+                )).toList();
     }
 }
