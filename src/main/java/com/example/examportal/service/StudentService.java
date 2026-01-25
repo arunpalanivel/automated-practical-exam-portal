@@ -29,7 +29,7 @@ public class StudentService {
         Student savedStudent = studentRepository.save(student);
         return new StudentResponseDTO(
                 savedStudent.getId(),
-                savedStudent.getRollnumber(),
+                savedStudent.getRollNumber(),
                 savedStudent.getName()
         );
     }
@@ -37,7 +37,7 @@ public class StudentService {
     public List<StudentResponseDTO> getAllStudents(){
         return studentRepository.findAll().stream().map(student -> new StudentResponseDTO(
                 student.getId(),
-                student.getRollnumber(),
+                student.getRollNumber(),
                 student.getName()
         )).collect(Collectors.toList());
     }

@@ -5,7 +5,7 @@ import jakarta.validation.constraints.Size;
 public class StudentRequestDTO {
 
     @NotBlank(message = "Roll Number must not be blank")
-    @Size(min = 11, max = 11, message = "Roll number must be between 5 and 20 characters")
+    @Size(min = 11, max = 11, message = "Roll number must be 11 characters")
     private String rollNumber;
 
     @NotBlank(message = "Student must not be blank")

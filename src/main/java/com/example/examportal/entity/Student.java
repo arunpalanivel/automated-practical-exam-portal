@@ -26,12 +26,12 @@ public class Student {
         return id;
     }
 
-    public String getRollnumber() {
+    public String getRollNumber() {
         return rollNumber;
     }
 
-    public void setRollnumber(String rollnumber) {
-        this.rollNumber = rollnumber;
+    public void setRollnumber(String rollNumber) {
+        this.rollNumber = rollNumber;
     }
 
     public String getName() {
