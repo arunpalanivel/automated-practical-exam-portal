@@ -19,17 +19,17 @@ public class Exam {
     private String subject;
     private LocalDateTime dateTime;
     private Integer durationMinutes;
-    private Long facultyId;
+    private String facultyCode;
 
     public Exam() {
     }
 
-    public Exam(String examCode, String subject, LocalDateTime dateTime, Integer durationMinutes, Long facultyId) {
+    public Exam(String examCode, String subject, LocalDateTime dateTime, Integer durationMinutes, String facultyCode) {
         this.examCode = examCode;
         this.subject = subject;
         this.dateTime = dateTime;
         this.durationMinutes = durationMinutes;
-        this.facultyId = facultyId;
+        this.facultyCode = facultyCode;
     }
 
     public Long getId() {
@@ -58,8 +58,8 @@ public class Exam {
     }
 
 
-    public Long getFacultyId() {
-        return facultyId;
+    public String getFacultyCode() {
+        return facultyCode;
     }
 
 
