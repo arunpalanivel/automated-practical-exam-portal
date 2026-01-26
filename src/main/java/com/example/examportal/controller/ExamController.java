@@ -5,10 +5,9 @@ import com.example.examportal.dto.ExamRequestDTO;
 import com.example.examportal.dto.ExamResponseDTO;
 import com.example.examportal.service.ExamService;
 import jakarta.validation.Valid;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/exams")
@@ -22,5 +21,10 @@ public class ExamController {
     @PostMapping
     public ExamResponseDTO createExam(@Valid @RequestBody ExamRequestDTO examRequestDTO){
         return examService.createExam(examRequestDTO);
+    }
+
+    @GetMapping
+    public List<ExamResponseDTO> getAllExams(){
+        return examService.getAllExams();
     }
 }
