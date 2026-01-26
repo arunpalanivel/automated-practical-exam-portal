@@ -22,4 +22,6 @@ public class QuestionController {
 
         return questionService.createQuestion(request);
     }
+
+  //  @GetMapping
 }
