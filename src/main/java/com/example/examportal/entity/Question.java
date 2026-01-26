@@ -17,18 +17,16 @@ public class Question {
     @Lob
     private String problemStatement;
 
-    @Lob
-    private String expectedOutput;
+
 
     public Question() {
     }
 
-    public Question(Long examId, String questionCode, String title, String problemStatement, String expectedOutput) {
+    public Question(Long examId, String questionCode, String title, String problemStatement) {
         this.examId = examId;
         this.questionCode = questionCode;
         this.title = title;
         this.problemStatement = problemStatement;
-        this.expectedOutput = expectedOutput;
     }
 
     public Long getId() {
@@ -49,10 +47,6 @@ public class Question {
 
     public String getProblemStatement() {
         return problemStatement;
-    }
-
-    public String getExpectedOutput() {
-        return expectedOutput;
     }
 
 

@@ -7,19 +7,18 @@ public class QuestionResponseDTO {
     private String questionCode;
     private String title;
     private String problemStatement;
-    private String expectedOutput;
 
     public QuestionResponseDTO(){
 
     }
 
-    public QuestionResponseDTO(Long id, Long examCode, String questionCode, String title, String problemStatement, String expectedOutput) {
+    public QuestionResponseDTO(Long id, Long examId, String questionCode, String title, String problemStatement) {
         this.id = id;
-        this.examId = examCode;
+        this.examId = examId;
         this.questionCode = questionCode;
         this.title = title;
         this.problemStatement = problemStatement;
-        this.expectedOutput = expectedOutput;
+
     }
 
     public Long getId() {
@@ -42,7 +41,4 @@ public class QuestionResponseDTO {
         return problemStatement;
     }
 
-    public String getExpectedOutput() {
-        return expectedOutput;
-    }
 }

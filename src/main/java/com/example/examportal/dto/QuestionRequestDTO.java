@@ -17,8 +17,7 @@ public class QuestionRequestDTO {
     @NotBlank(message = "Problem cannot be blank")
     private String problemStatement;
 
-    @NotBlank(message = "Expected output cannot be blank")
-    private String expectedOutput;
+
 
     public QuestionRequestDTO(){
 
@@ -40,13 +39,7 @@ public class QuestionRequestDTO {
         this.title = title;
     }
 
-    public String getExpectedOutput() {
-        return expectedOutput;
-    }
 
-    public void setExpectedOutput(String expectedOutput) {
-        this.expectedOutput = expectedOutput;
-    }
 
     public String getProblemStatement() {
         return problemStatement;

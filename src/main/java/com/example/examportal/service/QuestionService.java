@@ -32,8 +32,7 @@ public class QuestionService {
                 request.getExamId(),
                 questionCode,
                 request.getTitle(),
-                request.getProblemStatement(),
-                request.getExpectedOutput()
+                request.getProblemStatement()
         );
 
         Question savedQuestion = questionRepository.save(question);
@@ -44,8 +43,7 @@ public class QuestionService {
                 savedQuestion.getExamId(),
                 savedQuestion.getQuestionCode(),
                 savedQuestion.getTitle(),
-                savedQuestion.getProblemStatement(),
-                savedQuestion.getExpectedOutput()
+                savedQuestion.getProblemStatement()
         );
 
     }
